@@ -1,0 +1,23 @@
+# https://docs.docker.com/compose/compose-file/
+name: mc-server-bot
+services:
+    bot:
+        build: .
+        env_file: .env
+        restart: ${COMPOSE_RESTART_POLICY}
+        mem_limit: ${COMPOSE_HARD_MEMORY_LIMIT}
+        mem_reservation: ${COMPOSE_SOFT_MEMORY_LIMIT}
+        depends_on:
+            - db
+    db:
+        image: postgres
+        ports:
+            - ${DB_PORT}
+        volumes:
+            - data:/data/db
+        environment:
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_NAME}
+
+volumes:
+    data: {}
