@@ -12,7 +12,7 @@ import { Command } from './Command.js';
 const validUsernameRegexp = /^[a-zA-Z0-9_]{3,16}$/;
 
 export const whitelistCommand: Command = {
-    permissionLevel: CommandPermissionLevel.AdminsOnly,
+    permissionLevel: CommandPermissionLevel.Everyone,
 
     name: 'whitelist',
 
